@@ -5,6 +5,9 @@ const fs = require('fs');
 
 const Web3 = require('web3');
 const EthereumTx = require('ethereumjs-tx')
+const expressQueue = require('express-queue');
+
+const queueMw = expressQueue({ activeLimit: 1, queuedLimit: -1 });
 
 
 app.get('/', (req, res) => {
@@ -34,9 +37,9 @@ app.get('/send/:recipientAddress/:quantity', async (req, res) => {
     const txData = mintableTokenContract.methods.mint(recipientAddress, quantity).encodeABI();
     const txGasLimit = 40000; // await mintableTokenContract.methods.mint(recipientAddress, quantity).estimateGas();
 
-    console.log('------------------------------------');
-    console.log(`txGasLimit ${txGasLimit}`);
-    console.log('------------------------------------');
+    // console.log('------------------------------------');
+    // console.log(`txGasLimit ${txGasLimit}`);
+    // console.log('------------------------------------');
 
     const txParams = {
         nonce: web3.utils.toHex(await web3.eth.getTransactionCount(MINTER_ADDRESS)),
@@ -49,7 +52,7 @@ app.get('/send/:recipientAddress/:quantity', async (req, res) => {
         chainId: 3
     };
 
-    console.log(txParams);
+    // console.log(txParams);
 
     const tx = new EthereumTx(txParams)
     tx.sign(privateKey);
@@ -60,7 +63,7 @@ app.get('/send/:recipientAddress/:quantity', async (req, res) => {
     return res.json(receipt);
 });
 
-app.get('/balance/:address', async (req, res) => {
+app.get('/balance/:address', queueMw, async (req, res) => {
     return res.json({
         'balance': await mintableTokenContract.methods.balanceOf(web3.utils.toChecksumAddress(req.params.address)).call()
     })
@@ -68,7 +71,7 @@ app.get('/balance/:address', async (req, res) => {
 
 app.listen(3000, function () {
     console.log('El famoso minter running listening on port 3000!')
-    console.log('------------------------------------');
-    console.log(`Configuration ${JSON.stringify(CONFIG, null, 4)}`);
-    console.log('------------------------------------');
+    // console.log('------------------------------------');
+    // console.log(`Configuration ${JSON.stringify(CONFIG, null, 4)}`);
+    // console.log('------------------------------------');
 })
