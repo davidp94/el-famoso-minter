@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/davidp94/el-famoso-minter/issues"
   },
-  "homepage": "https://github.com/davidp94/el-famoso-minter#readme"
+  "homepage": "https://github.com/davidp94/el-famoso-minter#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
