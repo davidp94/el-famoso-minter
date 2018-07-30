@@ -5,6 +5,35 @@ This project lets you :
 
 ## Get started
 
+## Copy the Git repo
+
+```
+git clone https://github.com/davidp94/el-famoso-minter
+```
+
+```
+cd el-famoso-minter
+```
+
+```
+npm install
+```
+
+## Generate the admin ethereum address of your token contract
+
+https://iancoleman.io/bip39/?
+Select ETH and 12 words
+Get the BIP44 first address `m/44'/60'/0'/0/0`
+
+### Generate a Mnemonic
+
+### Add some ethers to your admin ethereum address
+
+Use for example a faucet: http://faucet.ropsten.be:3001/
+
+### Generate an Infura API key
+
+https://infura.io/register
 
 ### Deploy your ERC20
 
@@ -29,10 +58,6 @@ Create a config.json containing the following data:
 ```
 
 ### Run the server
-
-```
-npm install
-```
 
 ```
 node .
