@@ -4,7 +4,8 @@
   "description": "ethereum mintable ERC20 token deployment and usage",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd dependencies/openzeppelin-solidity && npm install"
   },
   "repository": {
     "type": "git",
