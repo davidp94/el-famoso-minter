@@ -22,8 +22,10 @@ npm install
 ## Generate the admin ethereum address of your token contract
 
 https://iancoleman.io/bip39/?
+
 Select ETH and 12 words
-Get the BIP44 first address `m/44'/60'/0'/0/0`
+
+Get the BIP44 first address `m/44'/60'/0'/0/0` public key and private key
 
 ### Generate a Mnemonic
 
